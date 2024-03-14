@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // we have to require our plugin at the top and then add it into our plugins array 
 const ModuleFederationPlugin = require('./webpack/lib/container/ModuleFederationPlugin');
+const packageJson = require('../package.json')
 
 const commonConfig = require('./webpack.common');
 
@@ -27,9 +28,7 @@ const devConfig = {
             exposes: {
                 './MarketingApp': './src/bootstrap'
             }, 
-            shared: {
-
-            }
+            shared: packageJson.dependencies,
         })
     ]
 }; 
